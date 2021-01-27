@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
+import { sliderWidth, itemWidth,itemWidth_9 } from './styles/SliderEntry.style';
 import SliderEntry from './components/SliderEntry';
+import SliderEntry_9 from './components/SliderEntry_9';
+
 import styles, { colors } from './styles/index.style';
 import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
@@ -27,6 +29,17 @@ export default class example extends Component {
     _renderItemWithParallax ({item, index}, parallaxProps) {
         return (
             <SliderEntry
+              data={item}
+              even={(index + 1) % 2 === 0}
+              parallax={true}
+              parallaxProps={parallaxProps}
+            />
+        );
+    }
+
+    _renderItemWithParallax_9 ({item, index}, parallaxProps) {
+        return (
+            <SliderEntry_9
               data={item}
               even={(index + 1) % 2 === 0}
               parallax={true}
@@ -85,6 +98,51 @@ export default class example extends Component {
             </View>
         );
     }
+
+    mainExample_9 (number, title) {
+        const { slider1ActiveSlide } = this.state;
+
+        return (
+            <View style={styles.exampleContainer}>
+                <Text style={styles.title}>{`Example ${number}`}</Text>
+                <Text style={styles.subtitle}>{title}</Text>
+                <Carousel
+                  ref={c => this._slider1Ref = c}
+                  data={ENTRIES1}
+                  renderItem={this._renderItemWithParallax_9}
+                  sliderWidth={sliderWidth}
+                  itemWidth={itemWidth_9}
+                  hasParallaxImages={true}
+                  firstItem={SLIDER_1_FIRST_ITEM}
+                  inactiveSlideScale={0.98}
+                  inactiveSlideOpacity={0.5}
+                  // inactiveSlideShift={20}
+                  containerCustomStyle={styles.slider_9}
+                  contentContainerCustomStyle={styles.sliderContentContainer}
+                  loop={true}
+                  loopClonesPerSide={2}
+                //   autoplay={true}
+                //   autoplayDelay={500}
+                //   autoplayInterval={3000}
+                  onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
+                />
+                {/* <Pagination
+                  dotsLength={ENTRIES1.length}
+                  activeDotIndex={slider1ActiveSlide}
+                  containerStyle={styles.paginationContainer}
+                  dotColor={'rgba(255, 255, 255, 0.92)'}
+                  dotStyle={styles.paginationDot}
+                  inactiveDotColor={colors.black}
+                  inactiveDotOpacity={0.4}
+                  inactiveDotScale={0.6}
+                  carouselRef={this._slider1Ref}
+                  tappableDots={!!this._slider1Ref}
+                /> */}
+            </View>
+        );
+    }
+
+    
 
     momentumExample (number, title) {
         return (
@@ -175,6 +233,7 @@ export default class example extends Component {
         const example6 = this.customExample(6, 'Custom animation 2', 2, this._renderLightItem);
         const example7 = this.customExample(7, 'Custom animation 3', 3, this._renderDarkItem);
         const example8 = this.customExample(8, 'Custom animation 4', 4, this._renderLightItem);
+        const example9 = this.mainExample_9(9, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
 
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -190,6 +249,7 @@ export default class example extends Component {
                       scrollEventThrottle={200}
                       directionalLockEnabled={true}
                     >
+                        { example9 }
                         { example1 }
                         { example2 }
                         { example3 }

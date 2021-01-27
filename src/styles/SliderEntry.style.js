@@ -15,6 +15,7 @@ const itemHorizontalMargin = wp(2);
 
 export const sliderWidth = viewportWidth;
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const itemWidth_9 = viewportWidth / 2.8 ;
 
 const entryBorderRadius = 8;
 
@@ -24,6 +25,15 @@ export default StyleSheet.create({
         height: slideHeight,
         paddingHorizontal: itemHorizontalMargin,
         paddingBottom: 18 // needed for shadow
+    },
+    slideInnerContainer_9: {
+        width: itemWidth_9,
+        height: slideHeight,
+        // paddingHorizontal: itemHorizontalMargin,
+        paddingVertical: 3, // needed for shadow
+        // backgroundColor:'#ff3',
+        // elevation:22
+        
     },
     shadow: {
         position: 'absolute',
@@ -35,7 +45,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowOffset: { width: 0, height: 10 },
         shadowRadius: 10,
-        borderRadius: entryBorderRadius
+        borderRadius: entryBorderRadius,
     },
     imageContainer: {
         flex: 1,
@@ -43,6 +53,14 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius
+    },
+    imageContainer_9: {
+        flex: 1,
+        // marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
+        backgroundColor: '#fff',
+        // borderTopLeftRadius: entryBorderRadius,
+        // borderTopRightRadius: entryBorderRadius
+        borderRadius:entryBorderRadius
     },
     imageContainerEven: {
         backgroundColor: colors.black
@@ -53,6 +71,14 @@ export default StyleSheet.create({
         borderRadius: IS_IOS ? entryBorderRadius : 0,
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius
+    },
+    image_9: {
+        ...StyleSheet.absoluteFillObject,
+        resizeMode: 'cover',
+        // borderRadius: IS_IOS ? entryBorderRadius : 0,
+        // borderTopLeftRadius: entryBorderRadius,
+        // borderTopRightRadius: entryBorderRadius
+        borderRadius:entryBorderRadius,
     },
     // image's border radius is buggy on iOS; let's hack it!
     radiusMask: {
@@ -67,6 +93,15 @@ export default StyleSheet.create({
         backgroundColor: colors.black
     },
     textContainer: {
+        justifyContent: 'center',
+        paddingTop: 20 - entryBorderRadius,
+        paddingBottom: 20,
+        paddingHorizontal: 16,
+        backgroundColor: 'white',
+        borderBottomLeftRadius: entryBorderRadius,
+        borderBottomRightRadius: entryBorderRadius
+    },
+    textContainer_9: {
         justifyContent: 'center',
         paddingTop: 20 - entryBorderRadius,
         paddingBottom: 20,

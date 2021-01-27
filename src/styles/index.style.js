@@ -55,7 +55,16 @@ export default StyleSheet.create({
         marginTop: 15,
         overflow: 'visible' // for custom animations
     },
+
+    slider_9: {
+        marginTop: 15,
+        overflow: 'visible', // for custom animations
+        // backgroundColor:'red',
+    },
     sliderContentContainer: {
+        paddingVertical: 10 // for custom animation
+    },
+    sliderContentContainer_9: {
         paddingVertical: 10 // for custom animation
     },
     paginationContainer: {
